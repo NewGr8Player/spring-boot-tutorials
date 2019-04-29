@@ -2,80 +2,42 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Inherit defaults from Spring Boot -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.6.RELEASE</version>
-    </parent>
-
-    <groupId>com.mindflow</groupId>
+    <groupId>io.dreamstudio</groupId>
     <artifactId>spring-boot-tutorials</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-    <name>spring-boot-tutorials</name>
+    <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <modules>
         <module>spring-boot-restful</module>
+	    <module>spring-boot-mybatis</module>
+        <module>spring-boot-mybatis-druid</module>
+        <module>spring-boot-mybatis-hikaricp</module>
+        <module>spring-boot-mybatis-multi-datasource</module>
+	    <module>spring-boot-redis-jedis</module>
+        <module>spring-boot-redis-lettuce</module>
+        <module>spring-boot-redis-sentinel</module>
+        <module>spring-boot-cache-redis</module>
+        <module>spring-boot-rest-template</module>
         <module>spring-boot-swagger2</module>
-        <module>spring-boot-mybatis3</module>
-        <module>spring-boot-mybatis3-multi-datasource</module>
-        <module>spring-boot-actuator</module>
+        <module>spring-boot-rabbitmq</module>
+        <module>spring-boot-jsp</module>
+        <module>spring-boot-thymeleaf</module>
     </modules>
 
     <properties>
-        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
-        <druid.version>1.0.25</druid.version>
-        <mysql.connector.version>5.1.39</mysql.connector.version>
-        <swagger.version>2.6.1</swagger.version>
-        <servlet.version>3.1.0</servlet.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <spring-boot.version>2.0.6.RELEASE</spring-boot.version>
         <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <junit.version>4.12</junit.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--log-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <!--logback-->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -89,13 +51,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <testSource>${java.version}</testSource>
                     <testTarget>${java.version}</testTarget>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
